@@ -1,0 +1,82 @@
+<div >
+        <div class="jumbotron" id="header">
+            <h1>{{mainView.heading}}</h1>
+            <hr/>
+            <h3>{{mainView.subheading}}</h3>
+        </div>
+        <form class="row">
+            <div class="col-xs-6 col-sm-4 col-md-2 form-group"> 
+                <label for="searchByNameAndScore">Search by Home Team</label>
+                <input type="text" name="matches" placeholder="Enter Home Team" ng-model="searchByTeamDateOrScore.team1.name"/><br/><br/>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-2 form-group">
+                <label for="searchByNameAndScore">Search by Away Team</label>
+                <input type="text" name="matches" placeholder="Enter Away Team" ng-model="searchByTeamDateOrScore.team2.name"/><br/><br/>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-2 form-group">
+                <label for="searchByNameAndScore">Search by Date(yyyy-mm-dd)</label>
+                <input type="text" name="matches" placeholder="Enter Date" ng-model="searchByTeamDateOrScore.date"/><br/><br/>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-2 form-group">
+                <label for="searchByNameAndScore">Search by Score of Home team</label>
+                <input type="text" name="matches" placeholder="Enter Date" ng-model="searchByTeamDateOrScore.score1"/><br/><br/>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-2 form-group">
+                <label for="searchByNameAndScore">Search by Score of Away Team</label>
+                <input type="text" name="matches" placeholder="Enter Date" ng-model="searchByTeamDateOrScore.score2"/><br/><br/>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-2 form-group"> 
+                <label for="searchByMatchday">Search by Matchday/Round</label>
+                <input type="text" name="matches" placeholder="Enter Round" ng-model="searchByMatchday.name"/><br/><br/>
+            </div>
+        </form>
+        <div>
+            <table class="table table-striped table-responsive table-bordered">
+                <caption>{{mainView.tableCaption}}</caption>
+                <thead>
+                    <tr>    
+                        <th class="toHide"> Rounds </th> 
+                        <th> Date </th> 
+                        <th>Home Team</th>
+                        <th>Score</th>
+                        <th>Away Team</th>
+                        <th></th>
+                    </tr>   
+                </thead>
+
+                <!-- Iterating over each round (matchday)-->
+                <tbody class="table-striped " ng-repeat="content in mainView.contentsOf2016 | filter : searchByMatchday " >
+                    
+                    <!-- Iterating over each match in a round (matchday) and hiding fixtures for matches that have score = null -->
+                    <tr ng-repeat = "match in content.matches | filter : searchByTeamDateOrScore" ng-hide="match.score1 === null && match.score2 === null">
+                        <td class="toHide">{{ content.name }}</td>
+                        <td>{{ match.date }}</td>
+                        <td> {{ match.team1.name}}</td>
+                        <td>{{ match.score1}} - {{match.score2}}</td>
+                        <td>{{ match.team2.name }}</td>
+                        <td> <a class="main-butn" ng-href="#/match/{{match.date}}/{{match.team1.code}}/{{match.team2.code}}">Check Details</a></td>
+                    </tr> 
+
+                </tbody>
+
+                <!-- Iterating over each round (matchday)-->
+                <tbody class="table-striped " ng-repeat="content in mainView.contentsOf2015 | filter : searchByMatchday " >
+                    
+                    <!-- Iterating over each match in a round (matchday) and hiding fixtures for matches that have score = null -->
+                    <tr ng-repeat = "match in content.matches | filter : searchByTeamDateOrScore" ng-hide="match.score1 === null && match.score2 === null">
+                        <td class="toHide">{{ content.name }}</td>
+                        <td>{{ match.date }}</td>
+                        <td>{{ match.team1.name}}</td>
+                        <td> {{ match.score1}} - {{match.score2}}</td>
+                        <td>{{ match.team2.name }}</td>
+                        <td> <a class="main-butn"  ng-href="#/match/{{match.date}}/{{match.team1.code}}/{{match.team2.code}}">Check Details</a></td>
+                    </tr> 
+
+                </tbody>
+
+            </table>
+        </div>
+        
+    </div> <!--container-fluid closed -->
+</div>
+

@@ -1,0 +1,81 @@
+#header {
+	margin-top: 50px;
+	text-align: center;
+}
+
+#match-header{
+
+	text-align: center ;
+	margin-top: 100px;
+	font-family: sans-serif;
+	font-weight: 700;
+	font-size: 1.5em;	
+}
+#bold{
+
+	font-weight: 700;
+}
+
+#butn{
+
+	background-color: #286090 ;
+	padding : 10px;
+	border : 1px solid grey;
+	border-radius: 4px;
+	color : white;
+}
+
+.main-butn{
+
+	background-color: #286090 ;
+	padding : 4px;
+	border : 1px solid grey;
+	border-radius: 4px;
+	color : white;
+
+}
+
+hr{
+	width: 100px;
+	border: 2px solid black ;
+	
+}
+caption {
+	text-align: center;
+	font-size: 1.3em;
+}
+
+table , th {
+	text-align: center;
+}
+
+a:active , a:hover , a:link , a {
+
+	text-decoration:  none ;
+	color : white;
+}
+
+a:hover {
+
+	font-weight: 500;
+}
+
+@media screen and (max-width : 656px){
+
+	.toHide {
+		display: none ;
+	}
+
+	table {
+
+		font-size: 0.8em;
+	}
+
+	th{
+		font-size: 0.9em;
+	}
+}
+
+#invisible {
+	visibility: hidden;
+}
