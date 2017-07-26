@@ -68,7 +68,7 @@ app.controller('teamStatsController', ['$http' , function($http){
 
 			var teamName = document.getElementById("inpt").value;
 			document.getElementById("invisible").style.visibility = "visible";
-			var flag = 0 ;
+			var flag  ; 
 			main.loadTeamStatsOf2016 = function(){
 
 				$http({
@@ -81,65 +81,69 @@ app.controller('teamStatsController', ['$http' , function($http){
 					
 					console.log(response);
 
-					var teamData = response.data.rounds  ;
-					var noOfMatches = 0 , noOfGoalsScored = 0 , noOfGoalsConceded = 0 ;
-					var noOfTies = 0 , noOfWins = 0 ; noOfLosses = 0 ;
-										
-					for( var i in teamData){
-						
-						for( var j in teamData[i].matches){
 
-							if( teamData[i].matches[j].team1.name == teamName){
-									flag = 1;
-								noOfMatches++ ;
-
-								noOfGoalsScored += teamData[i].matches[j].score1 ; 
-								noOfGoalsConceded += teamData[i].matches[j].score1 ;
+						var teamData = response.data.rounds  ;
+							var noOfMatches = 0 , noOfGoalsScored = 0 , noOfGoalsConceded = 0 ;
+							var noOfTies = 0 , noOfWins = 0 ; noOfLosses = 0 ;
+												
+							for( var i in teamData){
 								
-								if( teamData[i].matches[j].score1 == teamData[i].matches[j].score2)
-									noOfTies ++;
+								for( var j in teamData[i].matches){
 
-								else if( teamData[i].matches[j].score1 > teamData[i].matches[j].score2)
-									noOfWins ++;
+									if( teamData[i].matches[j].team1.name == teamName){
+											flag = 1;
+											
+										noOfMatches++ ;
 
-								else if( teamData[i].matches[j].score1 < teamData[i].matches[j].score2)
-									noOfLosses ++;
+										noOfGoalsScored += teamData[i].matches[j].score1 ; 
+										noOfGoalsConceded += teamData[i].matches[j].score1 ;
+										
+										if( teamData[i].matches[j].score1 == teamData[i].matches[j].score2)
+											noOfTies ++;
 
-							} // end of  if condition
+										else if( teamData[i].matches[j].score1 > teamData[i].matches[j].score2)
+											noOfWins ++;
 
-							else if ( teamData[i].matches[j].team2.name == teamName){
-										flag = 1;
-								noOfMatches++ ;
+										else if( teamData[i].matches[j].score1 < teamData[i].matches[j].score2)
+											noOfLosses ++;
 
-								noOfGoalsScored += teamData[i].matches[j].score2 ;
-								noOfGoalsConceded += teamData[i].matches[j].score1 ;
+									} // end of  if condition
 
-								if( teamData[i].matches[j].score1 == teamData[i].matches[j].score2)
-									noOfTies ++;
+									else if ( teamData[i].matches[j].team2.name == teamName){
+												flag = 1;
+												
+										noOfMatches++ ;
 
-								else if( teamData[i].matches[j].score1 < teamData[i].matches[j].score2)
-									noOfWins ++;
+										noOfGoalsScored += teamData[i].matches[j].score2 ;
+										noOfGoalsConceded += teamData[i].matches[j].score1 ;
 
-								else if( teamData[i].matches[j].score1 > teamData[i].matches[j].score2)
-									noOfLosses ++;
+										if( teamData[i].matches[j].score1 == teamData[i].matches[j].score2)
+											noOfTies ++;
 
-							} // end of else if
+										else if( teamData[i].matches[j].score1 < teamData[i].matches[j].score2)
+											noOfWins ++;
 
-						} // end of inner loop 
+										else if( teamData[i].matches[j].score1 > teamData[i].matches[j].score2)
+											noOfLosses ++;
 
-					}// end of teamData loop
+									} // end of else if
 
-					main.statsOf2016.winPercent = ((noOfWins*100)/noOfMatches).toFixed(2) ;
-					main.statsOf2016.lossPercent = ((noOfLosses*100)/noOfMatches).toFixed(2) ;
-					main.statsOf2016.goalDifference = noOfGoalsScored - noOfGoalsConceded ;
-					main.statsOf2016.totalMatches = noOfMatches ;
-					main.statsOf2016.totalWins = noOfWins ;
-					main.statsOf2016.totalLosses = noOfLosses ;
-					main.statsOf2016.totalGoalsScored = noOfGoalsScored ;
-					main.statsOf2016.totalGoalsConceded = noOfGoalsConceded ;
-					main.statsOf2016.totalTies = noOfTies ;
+								} // end of inner loop 
 
-					
+							}// end of teamData loop
+
+							main.statsOf2016.winPercent = ((noOfWins*100)/noOfMatches).toFixed(2) ;
+							main.statsOf2016.lossPercent = ((noOfLosses*100)/noOfMatches).toFixed(2) ;
+							main.statsOf2016.goalDifference = noOfGoalsScored - noOfGoalsConceded ;
+							main.statsOf2016.totalMatches = noOfMatches ;
+							main.statsOf2016.totalWins = noOfWins ;
+							main.statsOf2016.totalLosses = noOfLosses ;
+							main.statsOf2016.totalGoalsScored = noOfGoalsScored ;
+							main.statsOf2016.totalGoalsConceded = noOfGoalsConceded ;
+							main.statsOf2016.totalTies = noOfTies ;
+							
+							if(flag != 1)
+								alert("Team did not play in 2016 !")
 
 				} , function(reason){
 
@@ -147,6 +151,8 @@ app.controller('teamStatsController', ['$http' , function($http){
 					console.log( reason ) ;
 
 				}); // end of http get request
+
+				
 			
 			} (); // end of loadteamstatsof2016
 
@@ -173,6 +179,7 @@ app.controller('teamStatsController', ['$http' , function($http){
 
 							if( teamData[i].matches[j].team1.name == teamName){
 									flag = 1;
+									
 								noOfMatches++ ;
 
 								noOfGoalsScored += teamData[i].matches[j].score1 ; 
@@ -191,6 +198,7 @@ app.controller('teamStatsController', ['$http' , function($http){
 
 							else if ( teamData[i].matches[j].team2.name == teamName){
 										flag = 1;
+										
 								noOfMatches++ ;
 
 								noOfGoalsScored += teamData[i].matches[j].score2 ;
@@ -222,17 +230,18 @@ app.controller('teamStatsController', ['$http' , function($http){
 					main.statsOf2015.totalGoalsConceded = noOfGoalsConceded ;
 					main.statsOf2015.totalTies = noOfTies ;
 
+					if(flag != 1 )
+						alert(" Team did not play in 2015! ")
+
 				} , function(reason){
 
 					alert("Some error occured, check console") ;
 					console.log(reason) ;
 
-				}); // end off http get request
+				}); // end of http get request
 
-			} (); // end of loadTeamStatsOf2016.
-
-			if(flag == 0)
-				alert(" No team found ! Try again.");	
+			} (); // end of loadTeamStatsOf2015.
+							
 
 	} // end of loadTeamStats
 
@@ -356,5 +365,4 @@ app.controller('singleMatchController',['$http' , '$routeParams', function($http
 	} (); // end of loadSingleMatchStats		
 
 }]);// end of single match controller
-
 
