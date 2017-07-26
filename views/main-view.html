@@ -48,7 +48,7 @@
                 <tbody class="table-striped " ng-repeat="content in mainView.contentsOf2016 | filter : searchByMatchday " >
                     
                     <!-- Iterating over each match in a round (matchday) and hiding fixtures for matches that have score = null -->
-                    <tr ng-repeat = "match in content.matches | filter : searchByTeamDateOrScore | orderBy : '+match.date'" ng-hide="match.score1 === null && match.score2 === null">
+                    <tr ng-repeat = "match in content.matches | filter : searchByTeamDateOrScore " ng-hide="match.score1 === null && match.score2 === null">
                         <td class="toHide">{{ content.name }}</td>
                         <td>{{ match.date }}</td>
                         <td> {{ match.team1.name}}</td>
