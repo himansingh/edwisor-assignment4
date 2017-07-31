@@ -45,31 +45,31 @@
                 </thead>
 
                 <!-- Iterating over each round (matchday)-->
-                <tbody class="table-striped " ng-repeat="content in mainView.contentsOf2016 | filter : searchByMatchday " >
+                <tbody class="table-striped " ng-repeat="content in mainView.contentsOf2016 | filter : searchByMatchday " ng-init="id1 =$index">
                     
                     <!-- Iterating over each match in a round (matchday) and hiding fixtures for matches that have score = null -->
-                    <tr ng-repeat = "match in content.matches | filter : searchByTeamDateOrScore " ng-hide="match.score1 === null && match.score2 === null">
+                    <tr ng-repeat = "match in content.matches | filter : searchByTeamDateOrScore " ng-hide="match.score1 === null && match.score2 === null" ng-init="id2 = $index">
                         <td class="toHide">{{ content.name }}</td>
                         <td>{{ match.date }}</td>
-                        <td> {{ match.team1.name}}</td>
+                        <td>{{ match.team1.name}}</td>
                         <td>{{ match.score1}} - {{match.score2}}</td>
                         <td>{{ match.team2.name }}</td>
-                        <td> <a class="main-butn" ng-href="#/match/{{match.date}}/{{match.team1.code}}/{{match.team2.code}}">Check Details</a></td>
+                        <td> <a class="main-butn" ng-href="#/match/{{id1}}/{{id2}}/{{match.date}}">Check Details</a></td>
                     </tr> 
 
                 </tbody>
 
                 <!-- Iterating over each round (matchday)-->
-                <tbody class="table-striped " ng-repeat="content in mainView.contentsOf2015 | filter : searchByMatchday " >
+                <tbody class="table-striped " ng-repeat="content in mainView.contentsOf2015 | filter : searchByMatchday " ng-init="id1 =$index">
                     
                     <!-- Iterating over each match in a round (matchday) and hiding fixtures for matches that have score = null -->
-                    <tr ng-repeat = "match in content.matches | filter : searchByTeamDateOrScore" ng-hide="match.score1 === null && match.score2 === null">
+                    <tr ng-repeat = "match in content.matches | filter : searchByTeamDateOrScore" ng-hide="match.score1 === null && match.score2 === null" ng-init="id2 = $index">
                         <td class="toHide">{{ content.name }}</td>
                         <td>{{ match.date }}</td>
                         <td>{{ match.team1.name}}</td>
                         <td> {{ match.score1}} - {{match.score2}}</td>
                         <td>{{ match.team2.name }}</td>
-                        <td> <a class="main-butn"  ng-href="#/match/{{match.date}}/{{match.team1.code}}/{{match.team2.code}}">Check Details</a></td>
+                        <td> <a class="main-butn"  ng-href="#/match/{{id1}}/{{id2}}/{{match.date}}">Check Details</a></td>
                     </tr> 
 
                 </tbody>
